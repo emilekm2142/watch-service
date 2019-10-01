@@ -12,6 +12,7 @@ def update(version:int):
 
 @app.route("/update/get")
 def get_update():
+    print("get_update()")
     return send_file("newest.bin")
 
 @app.route("/update/get/settings")
