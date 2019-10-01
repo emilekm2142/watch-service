@@ -1,6 +1,5 @@
-from flask import Flask
-from flask import send_file
-import json
+from flask import Flask, send_file
+import os
 app = Flask(__name__)
 CURRENT_VERSION = 2
 newest_version_dir = 'newest/newest.bin'
@@ -14,6 +13,15 @@ def update(version:int):
 @app.route("/update/get")
 def get_update():
     return send_file("newest.bin")
+
+@app.route("/update/get/settings")
+def get_update_files():
+    print(os.listdir("s"))
+    return "\n".join(os.listdir("s"))
+
+@app.route("/update/get/settings/<filename>")
+def get_update_file(filename):
+    return send_file(f"s/{filename}")
 
 @app.route("/")
 def index():
